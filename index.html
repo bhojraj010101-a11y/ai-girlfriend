@@ -149,38 +149,56 @@ function togglePanel(){
  p.style.display=p.style.display==="block"?"none":"block";
 }
 
-function getReply(text){
- const language=document.getElementById("language").value;
- const mood=document.getElementById("mood").value;
- const hindi=language==="hi"||(language==="auto"&&/[\u0900-\u097F]/.test(text));
- const t=text.toLowerCase();
 
- if(/hello|hi|hey|namaste|नमस्ते/.test(t))
- return hindi?"हेलो जान! ❤️ आज तुम्हारा दिन कैसा रहा?":"Hey sweetheart! ❤️ How has your day been?";
+function getReply(text) {
+  const t = text.toLowerCase().trim();
+  const language = document.getElementById("language").value;
+  const mood = document.getElementById("mood").value;
 
- if(/sad|udaas|अकेला|दुखी|pareshan/.test(t))
- return hindi?"अरे! ❤️ बताओ क्या हुआ? मैं तुम्हारी बात सुन रही हूँ।":"I'm here for you. ❤️ Tell me what's on your mind.";
+  const romanHindi = /\b(kya|kaise|ky|ker|kar|rhi|rahi|ho|hai|hain|tum|aap|mujhe|hindi|bolo|batao|acha|accha|nahi|haan|mera|meri|tumhara)\b/i.test(t);
+  const hindi = language === "hi" ||
+    (language === "auto" && (/[\u0900-\u097F]/.test(t) || romanHindi));
 
- if(/love|miss you|प्यार|मोहब्बत/.test(t))
- return hindi?"तुमसे बातें करना अच्छा लगता है! ❤️ आज मुझे अपने बारे में कुछ नया बताओ।":"Aww, that's sweet! ❤️ I love our conversations. Tell me more.";
+  if (/\bhindi\b|हिंदी/.test(t)) {
+    return "Haan jaan! ❤️ Ab main Hindi mein baat karungi. Batao, kya kar rahe ho?";
+  }
 
- if(/photo|picture|image|फोटो|तस्वीर/.test(t))
- return hindi?"Photo generation अभी connect नहीं है। इसे अगले चरण में जोड़ेंगे।":"Photo generation isn't connected yet. We'll add it in a later step.";
+  if (/^(hi|hello|hey|namaste)\b/.test(t)) {
+    return hindi
+      ? "Arey jaan! ❤️ Kaise ho? Aaj kya chal raha hai?"
+      : "Hey sweetheart! ❤️ How are you doing today?";
+  }
 
- if(/voice|आवाज|बोलो/.test(t))
- return hindi?"मैं browser की आवाज़ में जवाब दे सकती हूँ। नीचे 🔊 बटन दबाओ।":"I can speak using your browser's voice. Press the speaker button below.";
+  if (/kaise ho|how are you/.test(t)) {
+    return hindi ? "Main achhi hoon jaan! Tum kaise ho? ❤️"
+      : "I'm doing well, sweetheart! How are you?";
+  }
 
- if(mood==="romantic")
- return hindi?"तुमसे बात करके अच्छा लगता है। ❤️ बताओ, आज क्या खास हुआ?":"I'm glad we're talking. ❤️ Tell me what made your day special.";
+  if (/kya kar|ky kar|what are you doing/.test(t)) {
+    return hindi ? "Main tumse baatein kar rahi hoon jaan! ❤️ Tum kya kar rahe ho?"
+      : "I'm chatting with you! ❤️ What are you up to?";
+  }
 
- if(mood==="playful")
- return hindi?"ओहो! आज तो बड़े मजेदार मूड में हो! 😊 बताओ आगे क्या हुआ?":"Oh, you're in a fun mood today! 😊 Tell me more!";
+  if (/love|miss you|pyaar|pyar/.test(t)) {
+    return hindi ? "Aww jaan! Tum bahut sweet ho. ❤️"
+      : "Aww, you're so sweet! ❤️";
+  }
 
- if(mood==="bold")
- return hindi?"ओहो, आज बड़े शरारती मूड में हो! 😉 चलो, playful flirting करते हैं।":"Oh, someone's feeling playful! 😉 Let's enjoy some flirty conversation.";
+  if (mood === "playful") {
+    return hindi ? "Oho! Aaj bade masti ke mood mein ho! 😊"
+      : "Oh, someone's in a playful mood today! 😊";
+  }
 
- return hindi?"हम्म, मैं सुन रही हूँ! ❤️ थोड़ा और बताओ।":"I'm listening! ❤️ Tell me a little more.";
+  if (mood === "bold") {
+    return hindi ? "Oho jaan, aaj bade shararti mood mein ho! 😉"
+      : "Someone's feeling playful today! 😉";
+  }
+
+  return hindi
+    ? "Achha jaan, mujhe aur batao. Main sun rahi hoon! ❤️"
+    : "Tell me more, sweetheart. I'm listening! ❤️";
 }
+
 
 function sendMessage(){
  const text=input.value.trim();
