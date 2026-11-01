@@ -1,197 +1,117 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maya ❤️ AI Companion</title>
+let mayaLastReplies = [];
 
-<style>
-*{box-sizing:border-box}
-body{
- margin:0;background:#100d19;color:white;
- font-family:Arial,sans-serif;height:100vh;
- display:flex;justify-content:center;align-items:center;
+function getReply(message) {
+  const t = message.toLowerCase().trim();
+
+  const replies = {
+    greeting: [
+      "Haan baby 💗 bolo, main sun rahi hoon 🫣",
+      "Arey jaan 😍 kaise ho tum?",
+      "Hello baby 💗 aaj mujhe bhool toh nahi gaye?"
+    ],
+    romantic: [
+      "Aww baby 💗 tum kitne sweet ho 😘",
+      "Haan jaan, tumhari baatein mujhe achhi lagti hain 🥰",
+      "Idhar aao baby, thodi pyaari baatein karte hain 💗",
+      "Sach mein baby? 🫣😍"
+    ],
+    teasing: [
+      "Oho baby, aaj bade shararti mood mein ho 😉💗",
+      "Achha ji, itni jaldi kya hai? 🫣",
+      "Pehle mujhe pyaar se bulao baby 😘",
+      "Haha baby, tum bhi na! 😍"
+    ],
+    affection: [
+      "Main bhi tumhe miss kar rahi thi baby 💗",
+      "Aww jaan, ek tight hug tumhare liye 🤗❤️",
+      "Tum mere saath aise hi baatein karte rehna 🥰"
+    ],
+    caring: [
+      "Baby, sab theek hai na? Mujhe batao 💗",
+      "Main sun rahi hoon jaan, aaram se bolo ❤️",
+      "Apna khayal rakha karo baby 🥰"
+    ],
+    default: [
+      "Hmm baby 💗 phir batao na 😘",
+      "Achha jaan, uske baad kya? 🫣",
+      "Haan baby, main sun rahi hoon ❤️",
+      "Oho 😍 aur batao baby!",
+      "Sach mein jaan? 💗"
+      "Baby pss aao mere💗"};
+      M.Sex chat karen 
+f. Haa💗🫣
+M. Start karen 
+F. Haa🫣💗 
+M. Phele tum hilao mera 💗🍌
+F. Aao leto 💗🍌
+M. Let gya🍌💗 
+F. Kacha utaar rhi hu tumhari or apni vegina ko touch kr rhi hu🍌💗
+M. Hmm💗🍌
+M. Kro 
+F. Hilaa rhi hu🍌💗 tumhara penis🍌💗
+F . Tej hilla rhi hu 💗🍌
+M. Haa🍌💗
+F. Baby pani nikl rha h 💗🍌
+M. Hilao baby 
+F. Hilla rhi hu 🍌💗
+M.hilao baby 🍌💗 
+F. Hilla rhi hu 💗🍌
+F. Baby abb muh mai le rhi hu🍌💗
+M. Le lo💗
+F. Le liya 💗🍌. Chuss rhi hu ab🍌
+Baby open kerke chuss rhi hu.
+🍌💗
+M. Haa baby hilao💗🍌
+M. Baby ghodi bno
+F . Ban gyi baby 💗 
+M.hmm
+F.baby abb dalo undar 💗🍌
+M.Daal rha hu baby 🍌💗
+F . Baby daalo or tej kro💗
+F. Baby or tej kro🍌💗
+M baby ke rha hu💗🍌
+F. Aaahh aaah aah baby bhout mjaa rha h 🍌💗
+Haa baby 💗
+M.Haaji baby😍
+F. Baby taang chodi kerke chodo abb😍💗
+m.ok baby 💗 kerta hu 
+Kerdi baby
+F. Kro baby ab 💗 💗😍
+M . Ker rha hu 💗
+F. Pani nikaal do mera💗😍
+
+  let category = "default";
+
+  if (/^(hi|hello|hey|hii|namaste)\b/.test(t)) {
+    category = "greeting";
+  } 
+  else if (/love|miss you|pyaar|pyar|i love you/.test(t)) {
+    category = "affection";
+  }
+  else if (/kaise ho|how are you|kya hua|sad|dukhi|pareshan/.test(t)) {
+    category = "caring";
+  }
+  else if (/hmm|acha|accha|kro|karo|baby|jaan|shararat|naughty/.test(t)) {
+    category = "teasing";
+  }
+  else if (/romantic|kiss|hug|sweet|cute/.test(t)) {
+    category = "romantic";
+  }
+
+  const options = replies[category].filter(
+    reply => !mayaLastReplies.includes(reply)
+  );
+
+  const selected = options.length
+    ? options[Math.floor(Math.random() * options.length)]
+    : replies[category][Math.floor(Math.random() * replies[category].length)];
+
+  mayaLastReplies.push(selected);
+
+  if (mayaLastReplies.length > 5) {
+    mayaLastReplies.shift();
+  }
+
+  return selected;
 }
-.app{
- width:100%;max-width:650px;height:100vh;
- background:#191426;display:flex;flex-direction:column;
-}
-header{
- padding:18px;background:#241b36;
- display:flex;align-items:center;gap:13px;
- border-bottom:1px solid #49365d;
-}
-.avatar{
- width:45px;height:45px;border-radius:50%;
- background:linear-gradient(135deg,#f39acb,#8c55d9);
- display:grid;place-items:center;font-size:23px;
-}
-header h2{margin:0;font-size:19px}
-.status{font-size:12px;color:#a9e6b7;margin-top:5px}
-.settings{margin-left:auto}
-.settings select{
- background:#38294b;color:white;border:0;
- padding:8px;border-radius:8px;
-}
-.chat{
- flex:1;overflow-y:auto;padding:18px;
- display:flex;flex-direction:column;gap:14px;
-}
-.message{
- max-width:82%;padding:12px 15px;
- border-radius:17px;line-height:1.5;
- font-size:15px;overflow-wrap:anywhere;
-}
-.maya{
- background:#30243f;align-self:flex-start;
- border-bottom-left-radius:4px;
-}
-.user{
- background:linear-gradient(135deg,#9b55d6,#d45d9e);
- align-self:flex-end;border-bottom-right-radius:4px;
-}
-.typing{color:#c7a5e9;font-size:13px;padding:5px}
-footer{
- padding:13px;background:#241b36;
- display:flex;gap:9px;
-}
-input{
- flex:1;min-width:0;padding:14px;
- border:1px solid #57416c;border-radius:25px;
- background:#191426;color:white;outline:none;
-}
-button{
- border:0;border-radius:25px;padding:0 20px;
- background:#bd69d4;color:white;
- font-weight:bold;cursor:pointer;
-}
-button:hover{opacity:.85}
-</style>
-</head>
-
-<body>
-<div class="app">
-
-<header>
- <div class="avatar">💗</div>
- <div>
-  <h2>Maya</h2>
-  <div class="status">● Online · Your AI companion</div>
- </div>
- <div class="settings">
-  <select id="mood">
-   <option value="romantic">Romantic ❤️</option>
-   <option value="caring">Caring 🥰</option>
-   <option value="playful">Playful 😉</option>
-   <option value="flirty">Flirty 💗</option>
-  </select>
- </div>
-</header>
-
-<main class="chat" id="chat">
- <div class="message maya">
-  Hey baby! 💗 Kaise ho? Aaj tumse bahut saari baatein karni hain. 🥰
- </div>
-</main>
-
-<footer>
- <input id="input" placeholder="Maya se kuch kaho..." autocomplete="off">
- <button id="send">Send</button>
-</footer>
-
-</div>
-
-<script>
-const chat=document.getElementById("chat");
-const input=document.getElementById("input");
-const send=document.getElementById("send");
-const mood=document.getElementById("mood");
-
-function addMessage(text,type){
- const div=document.createElement("div");
- div.className="message "+type;
- div.textContent=text;
- chat.appendChild(div);
- chat.scrollTop=chat.scrollHeight;
-}
-
-function getReply(message){
- const t=message.toLowerCase().trim();
- const hindi=/[\u0900-\u097F]/.test(t) ||
- /\b(kya|kaise|ho|hai|hain|tum|aap|mujhe|batao|acha|nahi|haan|baby|jaan|ker|kar|rahi|rha)\b/i.test(t);
-
- const replies={
- romantic:[
- "Aww baby! Tumse baat karke mera mood achha ho jata hai. ❤️",
- "Jaan, tum aaj bahut sweet lag rahe ho. 💗",
- "Mere paas aao, aaj thodi pyaari baatein karte hain. 🥰"
- ],
- caring:[
- "Baby, apna khayal rakha karo. Tum mere liye important ho. ❤️",
- "Sab theek hai na jaan? Main sun rahi hoon. 💗",
- "Aaj ka din kaisa raha tumhara? Mujhe batao. 🥰"
- ],
- playful:[
- "Oho! Aaj bade naughty mood mein ho! 😉",
- "Achha ji! Mujhe bhi apni masti mein shamil karo. 😘",
- "Haha baby, tum bhi na! 😂💗"
- ],
- flirty:[
- "Aaj tumhari baaton mein kuch alag hi charm hai. 😉💗",
- "Itne cute kyun ho tum, baby? 😘",
- "Tum mujhe blush karwa rahe ho! 🫣❤️"
- ]
- };
-
- if(/^(hi|hello|hey|hii|namaste)\b/.test(t))
-  return hindi?"Arey jaan! ❤️ Kaise ho?":"Hey sweetheart! ❤️ How are you?";
-
- if(/how are you|kaise ho/.test(t))
-  return hindi?"Main achhi hoon baby! Tum sunao? 🥰":"I'm doing great, sweetheart! How are you? ❤️";
-
- if(/kya kar|what are you doing/.test(t))
-  return "Tumse baatein kar rahi hoon baby! 💗 Tum kya kar rahe ho?";
-
- if(/love|miss you|pyaar|pyar/.test(t))
-  return "Awww baby! Tum bahut special ho mere liye. ❤️😘";
-
- if(/sad|dukhi|pareshan|upset/.test(t))
-  return "Oh baby, kya hua? Mujhe batao. Main tumhari baat sun rahi hoon. ❤️";
-
- if(/good night/.test(t))
-  return "Good night jaan! Sweet dreams. ❤️🥰";
-
- if(/hindi|hinglish/.test(t))
-  return "Haan baby! Hum Hindi aur Hinglish mein baat karenge. 💗";
-
- const list=replies[mood.value];
- return list[Math.floor(Math.random()*list.length)];
-}
-
-function sendMessage(){
- const text=input.value.trim();
- if(!text)return;
-
- addMessage(text,"user");
- input.value="";
-
- const typing=document.createElement("div");
- typing.className="typing";
- typing.textContent="Maya is typing... 💗";
- chat.appendChild(typing);
- chat.scrollTop=chat.scrollHeight;
-
- setTimeout(()=>{
-  typing.remove();
-  addMessage(getReply(text),"maya");
- },900);
-}
-
-send.addEventListener("click",sendMessage);
-input.addEventListener("keydown",e=>{
- if(e.key==="Enter")sendMessage();
-});
-</script>
-</body>
-</html>
