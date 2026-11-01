@@ -4,247 +4,194 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maya AI | Your Virtual Companion</title>
+<title>Maya ❤️ AI Companion</title>
+
 <style>
-:root {
- --bg:#100d18;--panel:#191522;--card:#251e30;
- --pink:#e68ac0;--purple:#9664c9;--text:#fff;
- --muted:#b9aec5;--border:#382d43;
-}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
-.app{height:100dvh;display:flex}
-.sidebar{width:265px;background:var(--panel);border-right:1px solid var(--border);padding:22px;display:flex;flex-direction:column}
-.logo{font-size:26px;font-weight:800;color:var(--pink);margin-bottom:32px}
-.newchat{background:var(--card);border:1px solid var(--border);color:white;padding:13px;border-radius:12px;text-align:left;cursor:pointer}
-.menu{margin-top:25px;color:var(--muted);font-size:12px;letter-spacing:1px}
-.menuitem{padding:13px 8px;color:#ddd;cursor:pointer;border-radius:9px}
-.menuitem:hover{background:var(--card)}
-.profile{margin-top:auto;background:var(--card);border-radius:14px;padding:13px;display:flex;align-items:center;gap:12px}
-.avatar{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#efacd0,#7955b7);font-size:24px}
-.muted{font-size:12px;color:var(--muted);margin-top:5px}
-.main{flex:1;min-width:0;display:flex;flex-direction:column}
-header{height:75px;border-bottom:1px solid var(--border);padding:12px 25px;display:flex;align-items:center;justify-content:space-between}
-.online{font-size:12px;color:#9ee0b0;margin-top:5px}
-select{background:var(--card);color:white;border:1px solid var(--border);padding:10px;border-radius:9px}
-.chat{flex:1;overflow-y:auto;padding:28px 7%;display:flex;flex-direction:column;gap:18px}
-.welcome{text-align:center;margin:auto;max-width:470px;color:var(--muted);line-height:1.7}
-.welcome .heart{font-size:65px}
-.welcome h1{font-size:32px;color:white;margin:10px}
-.welcome p{margin:8px}
-.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin-top:20px}
-.chip{padding:9px 12px;border-radius:20px;background:var(--card);color:#edb5d7;font-size:12px}
-.message{max-width:78%;padding:14px 17px;border-radius:16px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
-.user{align-self:flex-end;background:linear-gradient(120deg,#a64d91,#7651b5)}
-.maya{align-self:flex-start;background:var(--card);border:1px solid var(--border)}
-.sender{font-size:11px;color:#e9a9d0;margin-bottom:6px}
-.bottom{padding:14px 5% 20px;border-top:1px solid var(--border)}
-.composer{max-width:850px;margin:auto;display:flex;gap:8px;background:#211b2b;padding:9px;border:1px solid #51405e;border-radius:16px}
-.composer input{flex:1;min-width:0;background:transparent;border:0;outline:none;color:white;font-size:15px;padding:10px}
-.tool,.send{border:0;border-radius:11px;padding:12px;color:white;background:#40304b;cursor:pointer}
-.send{background:linear-gradient(120deg,#bd65a7,#8658c1);font-weight:bold}
-.note{text-align:center;color:#84798e;font-size:11px;margin-top:11px}
-.panel{display:none;position:absolute;right:20px;top:85px;background:#251e30;border:1px solid var(--border);padding:18px;border-radius:14px;z-index:5;width:min(300px,85vw)}
-.panel button{margin:5px;padding:9px;background:#493451;color:white;border:0;border-radius:8px}
-@media(max-width:650px){
- .sidebar{width:66px;padding:10px;align-items:center}
- .logo{font-size:20px;margin:9px 0 30px}
- .logo span,.profile .details,.newchat span,.menu{display:none}
- .newchat{padding:12px}
- .profile{padding:6px}
- .chat{padding:20px 12px}
- .message{max-width:92%}
- header{padding:12px}
- .welcome h1{font-size:26px}
+body{
+ margin:0;background:#100d19;color:white;
+ font-family:Arial,sans-serif;height:100vh;
+ display:flex;justify-content:center;align-items:center;
 }
+.app{
+ width:100%;max-width:650px;height:100vh;
+ background:#191426;display:flex;flex-direction:column;
+}
+header{
+ padding:18px;background:#241b36;
+ display:flex;align-items:center;gap:13px;
+ border-bottom:1px solid #49365d;
+}
+.avatar{
+ width:45px;height:45px;border-radius:50%;
+ background:linear-gradient(135deg,#f39acb,#8c55d9);
+ display:grid;place-items:center;font-size:23px;
+}
+header h2{margin:0;font-size:19px}
+.status{font-size:12px;color:#a9e6b7;margin-top:5px}
+.settings{margin-left:auto}
+.settings select{
+ background:#38294b;color:white;border:0;
+ padding:8px;border-radius:8px;
+}
+.chat{
+ flex:1;overflow-y:auto;padding:18px;
+ display:flex;flex-direction:column;gap:14px;
+}
+.message{
+ max-width:82%;padding:12px 15px;
+ border-radius:17px;line-height:1.5;
+ font-size:15px;overflow-wrap:anywhere;
+}
+.maya{
+ background:#30243f;align-self:flex-start;
+ border-bottom-left-radius:4px;
+}
+.user{
+ background:linear-gradient(135deg,#9b55d6,#d45d9e);
+ align-self:flex-end;border-bottom-right-radius:4px;
+}
+.typing{color:#c7a5e9;font-size:13px;padding:5px}
+footer{
+ padding:13px;background:#241b36;
+ display:flex;gap:9px;
+}
+input{
+ flex:1;min-width:0;padding:14px;
+ border:1px solid #57416c;border-radius:25px;
+ background:#191426;color:white;outline:none;
+}
+button{
+ border:0;border-radius:25px;padding:0 20px;
+ background:#bd69d4;color:white;
+ font-weight:bold;cursor:pointer;
+}
+button:hover{opacity:.85}
 </style>
 </head>
+
 <body>
 <div class="app">
-<aside class="sidebar">
- <div class="logo">♡ <span>Maya AI</span></div>
- <button class="newchat" onclick="newChat()">＋ <span>New Conversation</span></button>
- <div class="menu">YOUR SPACE</div>
- <div class="menuitem" onclick="newChat()">♡ New Chat</div>
- <div class="menuitem" onclick="togglePanel()">⚙ Settings</div>
- <div class="profile">
-  <div class="avatar">M</div>
-  <div class="details"><b>Maya</b><div class="muted">Fictional AI Companion</div></div>
- </div>
-</aside>
 
-<main class="main">
 <header>
- <div><b>♡ Maya</b><div class="online">● Online · AI Companion</div></div>
- <select id="language">
-  <option value="auto">Auto Language</option>
-  <option value="hi">Hindi</option>
-  <option value="en">English</option>
-  <option value="hinglish">Hinglish</option>
- </select>
+ <div class="avatar">💗</div>
+ <div>
+  <h2>Maya</h2>
+  <div class="status">● Online · Your AI companion</div>
+ </div>
+ <div class="settings">
+  <select id="mood">
+   <option value="romantic">Romantic ❤️</option>
+   <option value="caring">Caring 🥰</option>
+   <option value="playful">Playful 😉</option>
+   <option value="flirty">Flirty 💗</option>
+  </select>
+ </div>
 </header>
 
-<div id="settings" class="panel">
- <b>Maya's Personality</b>
- <select id="mood" style="width:100%;margin-top:12px">
-  <option value="all">All-in-one</option>
-  <option value="romantic">Romantic & Caring</option>
-  <option value="playful">Cute & Playful</option>
-  <option value="bold">Flirty & Bold</option>
- </select>
- <p class="muted">AI connection will be added in the next setup.</p>
- <button onclick="togglePanel()">Close</button>
-</div>
-
-<section class="chat" id="chat">
- <div class="welcome" id="welcome">
-  <div class="heart">💗</div>
-  <h1>Hey, I'm Maya!</h1>
-  Your virtual companion is here. Talk to me in Hindi, English or Hinglish.
-  <div class="chips">
-   <div class="chip">❤️ Romantic</div>
-   <div class="chip">🌸 Caring</div>
-   <div class="chip">😊 Playful</div>
-   <div class="chip">🔥 Bold</div>
-  </div>
+<main class="chat" id="chat">
+ <div class="message maya">
+  Hey baby! 💗 Kaise ho? Aaj tumse bahut saari baatein karni hain. 🥰
  </div>
-</section>
-
-<div class="bottom">
- <div class="composer">
-  <button class="tool" onclick="voiceInput()" title="Voice input">🎙️</button>
-  <input id="message" placeholder="Message Maya..." autocomplete="off">
-  <button class="tool" onclick="speakLast()" title="Voice reply">🔊</button>
-  <button class="tool" onclick="photoInfo()" title="Photo generation">📷</button>
-  <button class="send" onclick="sendMessage()">➤</button>
- </div>
- <div class="note">Maya is a fictional AI character. Romantic interactions should be consensual. ❤️</div>
-</div>
 </main>
+
+<footer>
+ <input id="input" placeholder="Maya se kuch kaho..." autocomplete="off">
+ <button id="send">Send</button>
+</footer>
+
 </div>
 
 <script>
 const chat=document.getElementById("chat");
-const input=document.getElementById("message");
-let lastReply="";
-let history=[];
+const input=document.getElementById("input");
+const send=document.getElementById("send");
+const mood=document.getElementById("mood");
 
 function addMessage(text,type){
- const welcome=document.getElementById("welcome");
- if(welcome)welcome.remove();
- const box=document.createElement("div");
- box.className="message "+type;
- const label=document.createElement("div");
- label.className="sender";
- label.textContent=type==="user"?"You":"Maya";
- const content=document.createElement("div");
- content.textContent=text;
- box.append(label,content);
- chat.appendChild(box);
+ const div=document.createElement("div");
+ div.className="message "+type;
+ div.textContent=text;
+ chat.appendChild(div);
  chat.scrollTop=chat.scrollHeight;
 }
 
-function togglePanel(){
- const p=document.getElementById("settings");
- p.style.display=p.style.display==="block"?"none":"block";
+function getReply(message){
+ const t=message.toLowerCase().trim();
+ const hindi=/[\u0900-\u097F]/.test(t) ||
+ /\b(kya|kaise|ho|hai|hain|tum|aap|mujhe|batao|acha|nahi|haan|baby|jaan|ker|kar|rahi|rha)\b/i.test(t);
+
+ const replies={
+ romantic:[
+ "Aww baby! Tumse baat karke mera mood achha ho jata hai. ❤️",
+ "Jaan, tum aaj bahut sweet lag rahe ho. 💗",
+ "Mere paas aao, aaj thodi pyaari baatein karte hain. 🥰"
+ ],
+ caring:[
+ "Baby, apna khayal rakha karo. Tum mere liye important ho. ❤️",
+ "Sab theek hai na jaan? Main sun rahi hoon. 💗",
+ "Aaj ka din kaisa raha tumhara? Mujhe batao. 🥰"
+ ],
+ playful:[
+ "Oho! Aaj bade naughty mood mein ho! 😉",
+ "Achha ji! Mujhe bhi apni masti mein shamil karo. 😘",
+ "Haha baby, tum bhi na! 😂💗"
+ ],
+ flirty:[
+ "Aaj tumhari baaton mein kuch alag hi charm hai. 😉💗",
+ "Itne cute kyun ho tum, baby? 😘",
+ "Tum mujhe blush karwa rahe ho! 🫣❤️"
+ ]
+ };
+
+ if(/^(hi|hello|hey|hii|namaste)\b/.test(t))
+  return hindi?"Arey jaan! ❤️ Kaise ho?":"Hey sweetheart! ❤️ How are you?";
+
+ if(/how are you|kaise ho/.test(t))
+  return hindi?"Main achhi hoon baby! Tum sunao? 🥰":"I'm doing great, sweetheart! How are you? ❤️";
+
+ if(/kya kar|what are you doing/.test(t))
+  return "Tumse baatein kar rahi hoon baby! 💗 Tum kya kar rahe ho?";
+
+ if(/love|miss you|pyaar|pyar/.test(t))
+  return "Awww baby! Tum bahut special ho mere liye. ❤️😘";
+
+ if(/sad|dukhi|pareshan|upset/.test(t))
+  return "Oh baby, kya hua? Mujhe batao. Main tumhari baat sun rahi hoon. ❤️";
+
+ if(/good night/.test(t))
+  return "Good night jaan! Sweet dreams. ❤️🥰";
+
+ if(/hindi|hinglish/.test(t))
+  return "Haan baby! Hum Hindi aur Hinglish mein baat karenge. 💗";
+
+ const list=replies[mood.value];
+ return list[Math.floor(Math.random()*list.length)];
 }
-
-
-function getReply(text) {
-  const t = text.toLowerCase().trim();
-  const language = document.getElementById("language").value;
-  const mood = document.getElementById("mood").value;
-
-  const romanHindi = /\b(kya|kaise|ky|ker|kar|rhi|rahi|ho|hai|hain|tum|aap|mujhe|hindi|bolo|batao|acha|accha|nahi|haan|mera|meri|tumhara)\b/i.test(t);
-  const hindi = language === "hi" ||
-    (language === "auto" && (/[\u0900-\u097F]/.test(t) || romanHindi));
-
-  if (/\bhindi\b|हिंदी/.test(t)) {
-    return "Haan jaan! ❤️ Ab main Hindi mein baat karungi. Batao, kya kar rahe ho?";
-  }
-
-  if (/^(hi|hello|hey|namaste)\b/.test(t)) {
-    return hindi
-      ? "Arey jaan! ❤️ Kaise ho? Aaj kya chal raha hai?"
-      : "Hey sweetheart! ❤️ How are you doing today?";
-  }
-
-  if (/kaise ho|how are you/.test(t)) {
-    return hindi ? "Main achhi hoon jaan! Tum kaise ho? ❤️"
-      : "I'm doing well, sweetheart! How are you?";
-  }
-
-  if (/kya kar|ky kar|what are you doing/.test(t)) {
-    return hindi ? "Main tumse baatein kar rahi hoon jaan! ❤️ Tum kya kar rahe ho?"
-      : "I'm chatting with you! ❤️ What are you up to?";
-  }
-
-  if (/love|miss you|pyaar|pyar/.test(t)) {
-    return hindi ? "Aww jaan! Tum bahut sweet ho. ❤️"
-      : "Aww, you're so sweet! ❤️";
-  }
-
-  if (mood === "playful") {
-    return hindi ? "Oho! Aaj bade masti ke mood mein ho! 😊"
-      : "Oh, someone's in a playful mood today! 😊";
-  }
-
-  if (mood === "bold") {
-    return hindi ? "Oho jaan, aaj bade shararti mood mein ho! 😉"
-      : "Someone's feeling playful today! 😉";
-  }
-
-  return hindi
-    ? "Achha jaan, mujhe aur batao. Main sun rahi hoon! ❤️"
-    : "Tell me more, sweetheart. I'm listening! ❤️";
-}
-
 
 function sendMessage(){
  const text=input.value.trim();
  if(!text)return;
+
  addMessage(text,"user");
- history.push({role:"user",content:text});
  input.value="";
- const reply=getReply(text);
- lastReply=reply;
- history.push({role:"assistant",content:reply});
- try{localStorage.setItem("maya_history",JSON.stringify(history))}catch(e){}
- setTimeout(()=>addMessage(reply,"maya"),400);
-}
-input.addEventListener("keydown",e=>{if(e.key==="Enter")sendMessage()});
 
-function newChat(){
- chat.innerHTML='<div class="welcome" id="welcome"><div class="heart">💗</div><h1>Hey, I am Maya!</h1>Your virtual companion is here. ❤️</div>';
- history=[];
- lastReply="";
- localStorage.removeItem("maya_history");
+ const typing=document.createElement("div");
+ typing.className="typing";
+ typing.textContent="Maya is typing... 💗";
+ chat.appendChild(typing);
+ chat.scrollTop=chat.scrollHeight;
+
+ setTimeout(()=>{
+  typing.remove();
+  addMessage(getReply(text),"maya");
+ },900);
 }
 
-function speakLast(){
- if(!lastReply)return alert("Maya has not replied yet.");
- if(!window.speechSynthesis)return alert("Speech is unavailable.");
- speechSynthesis.cancel();
- const utterance=new SpeechSynthesisUtterance(lastReply);
- const lang=document.getElementById("language").value;
- utterance.lang=lang==="en"?"en-US":lang==="hi"?"hi-IN":(/[\u0900-\u097F]/.test(lastReply)?"hi-IN":"en-US");
- speechSynthesis.speak(utterance);
-}
-
-function voiceInput(){
- const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
- if(!SR)return alert("Voice input ke liye Chrome browser use karo.");
- const rec=new SR();
- const lang=document.getElementById("language").value;
- rec.lang=lang==="en"?"en-US":"hi-IN";
- rec.onresult=e=>{input.value=e.results[0][0].transcript;sendMessage()};
- rec.onerror=()=>alert("Microphone permission check karo.");
- rec.start();
-}
-
-function photoInfo(){
- alert("AI photo generation will be connected in the next development step.");
-}
+send.addEventListener("click",sendMessage);
+input.addEventListener("keydown",e=>{
+ if(e.key==="Enter")sendMessage();
+});
 </script>
 </body>
 </html>
